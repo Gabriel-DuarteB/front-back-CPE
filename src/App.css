@@ -1,0 +1,136 @@
+.tela-amarela{
+    border: solid;
+    height: 90px;
+    width: 100%;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    gap: 15%;
+}
+
+.cadastro-botao{
+    position: absolute;
+  top: 60px; /* controla a distância do topo da tela */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 35px;
+  color: yellow;
+  border: none;
+  background-color: black;
+}
+
+.campo-escrita {
+    width: 600px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    padding: 0 10px;
+    margin: 13px 0;
+    border: solid;
+    border-radius: 32px;
+  }
+
+  .tela-preta {
+    position: relative;
+    height: 100vh;           /* tela toda */
+    background-color: black; /* fundo preto */
+  }
+
+  .campos-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .campos-centrais {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+
+  }
+
+  .frase-login {
+    color: white;
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .login-destaque {
+    color: yellow;
+    text-decoration: none;
+    cursor: pointer;
+    font-style: normal;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .botao-criar-conta {
+    margin-top: 15px;
+    font-size: 25px;
+    color: black;
+    background-color: yellow;
+    border: none;
+    border-radius: 16px;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; 
+    cursor: pointer;
+  }
+  
+  .logo-icone {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    width: 215px; /* ou o tamanho desejado */
+    height: auto;
+    z-index: 10; 
+  }
+
+  @media (max-width: 280px) {
+    .campo-escrita {
+      width: 90%;
+      font-size: 14px;
+    }
+  
+    .cadastro-botao {
+      font-size: 20px;
+      top: 30px;
+    }
+  
+    .logo-icone {
+      width: 150px;
+      top: 37px;
+      left: 25px;
+    }
+  
+    .botao-criar-conta {
+      font-size: 18px;
+      padding: 8px 20px;
+    }
+  
+    .frase-login {
+      font-size: 14px;
+    }
+  
+    .tela-amarela {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  .icone-opcoes {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: #000; /* muda se quiser outra cor */
+    cursor: pointer;
+  }
+
+
+  
+
