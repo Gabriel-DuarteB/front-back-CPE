@@ -4,8 +4,6 @@ import logo from "./cpe_logo.svg";
 
 import { AiOutlineEllipsis } from "react-icons/ai"; // Importar ícone do react icons 
 
-import React, { useState } from "react";
-
 function App() {
 
   return (
