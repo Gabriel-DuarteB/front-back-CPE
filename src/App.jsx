@@ -1,70 +1,47 @@
-import "./App.css";
-import { Input } from "antd"; // Importar coisas da biblioteca ant designer que instalei 
-import logo from "./cpe_logo.svg";
 
-import { AiOutlineEllipsis } from "react-icons/ai"; // Importar ícone do react icons 
+import React, { useEffect } from 'react'; 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import Home from './Pages/Home/Home';
+import Login from './Pages/Login/Login';
+import Cadastro from './Pages/Cadastro/Cadastro'; 
+
+
+import { setupAxiosInterceptors, logout } 
+    from './utils/auth'; 
+
+
+setupAxiosInterceptors();
 
 function App() {
 
+
   return (
+    <BrowserRouter>
+      <Header />
+      <main style={{ marginTop: '60px' }}> 
+        <Routes>
+          
+          <Route path="/login" element={<Login />} />
+          
+          <Route path="/cadastro" element={<Cadastro />} />
 
-    <div>
+          
+          <Route 
+            path="/" 
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            } 
+          />
 
-      <div className="tela-amarela"> 
-
-      < img src={logo} alt="Logo CPE" className="logo-icone" />
-
-      <div className="icone-opcoes">
-    <AiOutlineEllipsis size={24} />
-  </div>
-      
-      </div>
-      
-      <div className="tela-preta">
-        
-      <button className="cadastro-botao">CADASTRO</button>
-
-      <div className="campos-centrais"> 
-      <div className="campos-inputs">  
-        <Input
-    type="nome"
-    placeholder="Nome"
-    className="campo-escrita"
-  />
-  <Input
-    type="email"
-    placeholder="E-mail"
-    className="campo-escrita"
-  />
-  <Input  
-    type="cargo"
-    placeholder="Cargo"
-    className="campo-escrita"
-  />
-  <Input.Password
-    type="senha"
-    placeholder="Senha"
-    className="campo-escrita"
-  />
-  <Input
-    type="repitasenha"
-    placeholder="Repita sua senha"
-    className="campo-escrita"
-  />
-
-<p className="frase-login">
-  Já tem uma conta? Faça o login <span className="login-destaque">aqui</span>.
-</p>
-
-<button className="botao-criar-conta">CRIAR CONTA</button>
-
-       </div>
-       </div>
-      </div>
-
-      
-
-    </div>
+          
+          
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }
 
