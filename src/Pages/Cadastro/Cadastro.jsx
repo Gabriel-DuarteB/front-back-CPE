@@ -1,5 +1,5 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from "react"; // Para armazenar os dados preenchidos no input 
+import axios from "axios"; // Biblioteca axios (envia os dados do front pro back)
 import {
   TelaAmarela,
   TelaPreta,
@@ -17,19 +17,19 @@ import {
 import { Input } from "antd";
 import { AiOutlineEllipsis } from "react-icons/ai";
 import logo from "../../assets/cpe_logo.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Depois que cadastrar vai direcionar prapágina de login 
 
 function Cadastro() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
-  const [nome, setNome] = useState("");
+  const [nome, setNome] = useState(""); // Guarda oq a pessoa digita no campo 
   const [email, setEmail] = useState("");
   const [cargo, setCargo] = useState("");
   const [senha, setSenha] = useState("");
   const [repetirSenha, setRepetirSenha] = useState("");
   const [nivel, setNivel] = useState("");
 
-  const handleCadastro = async () => {
+  const handleCadastro = async () => { // Função pra enviar as coisas pro back 
     if (senha !== repetirSenha) {
       alert("As senhas não coincidem");
       return;
@@ -41,8 +41,8 @@ function Cadastro() {
     }
 
     try {
-      await axios.post("http://localhost:8000/usuarios", {
-        // .trim() remove espaços em branco
+      await axios.post("http://localhost:8000/usuarios", { // Requisição axios para a rota(URL que coloquei)
+        // Posta oq coloco no front nessa rota
         nome: nome.trim(), 
         email: email.trim(), 
         cargo: cargo.trim(), 
@@ -50,8 +50,8 @@ function Cadastro() {
         nivel,
       });
 
-      alert("Cadastro realizado com sucesso!");
-      navigate("/login");
+      alert("Cadastro realizado com sucesso!"); // Se os dados preenchidos estiverem validos, o cadastro será realizados
+      navigate("/login"); // E vai ser direcionado pra página de login 
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
       
@@ -59,16 +59,16 @@ function Cadastro() {
     }
   };
 
-  return (
+  return ( // Interface da tela de cadastro
     <div>
-      <TelaAmarela>
+      <TelaAmarela> {/* Seção da tela amarela  */}
         <LogoIcone src={logo} alt="Logo CPE" />
         <IconeOpcoes>
           <AiOutlineEllipsis size={24} />
         </IconeOpcoes>
       </TelaAmarela>
 
-      <TelaPreta>
+      <TelaPreta> {/* Seção da tela preta */}
         <BotaoCadastro>CADASTRO</BotaoCadastro>
 
         <CamposCentrais>
@@ -146,4 +146,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default Cadastro; // Pra eu poder exportar os componentes como padrão do arquivo 

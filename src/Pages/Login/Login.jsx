@@ -1,10 +1,10 @@
-
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { login as authLogin } from "../../utils/auth"; 
 
 
-import {
+
+import { // Importação dos componentes estilizados no Styles 
   TelaAmarela,
   TelaPreta,
   LogoIcone,
@@ -23,7 +23,7 @@ import logo from "../../assets/cpe_logo.svg";
 function Login() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); // Estados pra guardar as coisas digitadas nos campos 
   const [senha, setSenha] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(""); 
@@ -39,11 +39,11 @@ function Login() {
     setError(""); 
 
     try {
-      const result = await authLogin(email.trim(), senha);
+      const result = await authLogin(email.trim(), senha); // Chama a função de login que faz a requisição POST para o back 
 
       if (result.success) {
         alert("Login realizado com sucesso!");
-        navigate(from, { replace: true }); 
+        navigate(from, { replace: true }); // vai direcionar pra página home 
       } else {
         setError(result.message || "E-mail ou senha inválidos.");
       }
@@ -57,6 +57,7 @@ function Login() {
 
   return (
     <div>
+     
       <TelaAmarela>
         <LogoIcone src={logo} alt="Logo CPE" />
        

@@ -1,1 +1,1 @@
-export { default } from "./Cadastro"
+export { default } from "./Cadastro" // Reexportação dos componentes da página cadastro - Manter a organização 

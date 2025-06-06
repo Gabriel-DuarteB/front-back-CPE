@@ -1,59 +1,54 @@
-import styled from "styled-components";
+// src/Pages/Login/Styles.js
+import styled, { createGlobalStyle } from "styled-components";
 
 export const TelaAmarela = styled.div`
   border: solid;
-  height: 90px;
+  height: 90px; /* Mantida a altura original */
   width: 100%;
   background-color: yellow;
   display: flex;
-  justify-content: center;
-  gap: 15%;
+  /* justify-content: center; e gap: 15%; não afetam elementos position:absolute */
+  position: relative; /* Para o posicionamento absoluto dos filhos */
 
   @media (max-width: 280px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    /* A media query pode precisar de ajustes se o layout dos itens absolutos mudar drasticamente */
   }
 `;
 
 export const TelaPreta = styled.div`
   position: relative;
-  height: 100vh;
+  min-height: calc(100vh - 90px); /* Ajustado para a altura da TelaAmarela de 90px */
   background-color: black;
+  display: flex; /* Para centralizar CamposCentrais */
+  flex-direction: column; /* Para centralizar CamposCentrais */
+  justify-content: center; /* Para centralizar CamposCentrais */
+  align-items: center; /* Para centralizar CamposCentrais */
 `;
 
 export const LogoIcone = styled.img`
   position: absolute;
-  top: 30px;
+  top: 20px; /* (90px_barra - 50px_logo) / 2 */
   left: 40px;
-  width: 215px;
-  height: auto;
+  height: 50px; /* Altura do logo */
+  width: auto;
   z-index: 10;
 
   @media (max-width: 280px) {
-    width: 150px;
-    top: 37px;
+    height: 40px; /* Logo um pouco menor */
+    top: 25px;    /* (90px_barra - 40px_logo) / 2 */
     left: 25px;
   }
 `;
 
-export const IconeOpcoes = styled.div`
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  color: #000;
-  cursor: pointer;
-`;
-
 export const BotaoLoginTitulo = styled.button`
-  position: absolute;
-  top: 60px;
+  position: absolute; /* Relativo à TelaPreta */
+  top: 60px; /* Espaçamento do topo da TelaPreta */
   left: 50%;
   transform: translateX(-50%);
   font-size: 35px;
   color: yellow;
   border: none;
-  background-color: black;
+  background-color: transparent; /* Fundo transparente pois está sobre TelaPreta */
 
   @media (max-width: 280px) {
     font-size: 20px;
@@ -62,21 +57,21 @@ export const BotaoLoginTitulo = styled.button`
 `;
 
 export const CamposCentrais = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  width: 100%; /* Para ocupar a largura e permitir centralização dos inputs */
+  max-width: 300px; /* Largura máxima dos campos de login */
+  margin-top: 120px; /* Espaço para o BotaoLoginTitulo que está em top: 60px */
 `;
 
 export const CamposInputs = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  gap: 15px; 
+  align-items: center;
+  gap: 15px; /* Espaçamento entre os inputs e outros elementos */
+  width: 100%;
 `;
 
 export const BotaoEntrar = styled.button`
-  margin-top: 15px;
+  margin-top: 15px; /* Pode ajustar ou remover se o gap de CamposInputs for suficiente */
   font-size: 25px;
   color: black;
   background-color: yellow;
@@ -86,6 +81,12 @@ export const BotaoEntrar = styled.button`
   font-weight: bold;
   font-family: 'Arial', sans-serif;
   cursor: pointer;
+  width: 100%; /* Para ocupar a largura de CamposCentrais */
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 
   @media (max-width: 280px) {
     font-size: 18px;
@@ -95,7 +96,7 @@ export const BotaoEntrar = styled.button`
 
 export const FraseCadastro = styled.p`
   color: white;
-  margin-top: 20px;
+  margin-top: 20px; /* Pode ajustar ou remover se o gap de CamposInputs for suficiente */
   font-size: 16px;
   text-align: center;
   font-family: 'Arial', sans-serif;
@@ -113,19 +114,22 @@ export const CadastroDestaque = styled.span`
   font-family: 'Arial', sans-serif;
 `;
 
-import { createGlobalStyle } from "styled-components";
-
 export const EstiloCampoInput = createGlobalStyle`
   .campo-escrita {
-    margin-bottom: 16px;
-    width: 300px;
+    width: 100% !important; /* Forçar a ocupar 100% do wrapper */
     height: 40px;
     font-size: 16px;
+    border-radius: 6px !important; /* Para inputs da Ant Design */
   }
 
-  @media (max-width: 280px) {
+  /* .ant-input-affix-wrapper { // Para o Input.Password
+    border-radius: 6px !important;
+    width: 100% !important;
+  } */
+
+  /* @media (max-width: 280px) { // Não mais necessário se o pai controla a largura
     .campo-escrita {
-      width: 230px;
+      width: 230px; 
     }
-  }
+  } */
 `;

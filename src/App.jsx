@@ -1,8 +1,9 @@
 
 import React, { useEffect } from 'react'; 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header/Header';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+
+
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Cadastro from './Pages/Cadastro/Cadastro'; 
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header />
+       
       <main style={{ marginTop: '60px' }}> 
         <Routes>
           

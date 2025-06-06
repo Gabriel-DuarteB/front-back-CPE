@@ -1,59 +1,63 @@
-import styled from "styled-components";
+import styled from "styled-components"; // Biblioteca pra fazer a estilização (CSS) com JavaScript 
+// Importa styled que usei pra criar componentes React 
 
-export const TelaAmarela = styled.div`
+export const TelaAmarela = styled.div` // Cria um componente chamado TelaAmarela que internamente e uma div(agrupar tags)
   border: solid;
-  height: 90px;
+  height: 90px; 
   width: 100%;
   background-color: yellow;
   display: flex;
-  justify-content: center;
-  gap: 15%;
+  
+  position: relative; 
 
   @media (max-width: 280px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+ 
   }
 `;
 
 export const TelaPreta = styled.div`
   position: relative;
-  height: 100vh;
+  min-height: calc(100vh - 90px); 
   background-color: black;
+  display: flex; /* Para centralizar */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
 `;
 
 export const LogoIcone = styled.img`
   position: absolute;
-  top: 30px;
+  top: 20px; 
   left: 40px;
-  width: 215px;
-  height: auto;
+  height: 50px; 
+  width: auto;
   z-index: 10;
 
   @media (max-width: 280px) {
-    width: 150px;
-    top: 37px;
+    height: 40px; 
+    top: 25px;    
     left: 25px;
   }
 `;
 
 export const IconeOpcoes = styled.div`
   position: absolute;
-  top: 16px;
+  top: 33px; 
   right: 16px;
   color: #000;
   cursor: pointer;
+  z-index: 10;
 `;
 
 export const BotaoCadastro = styled.button`
-  position: absolute;
-  top: 60px;
+  position: absolute; 
+  top: 60px; 
   left: 50%;
   transform: translateX(-50%);
   font-size: 35px;
   color: yellow;
   border: none;
-  background-color: black;
+  background-color: transparent; 
 
   @media (max-width: 280px) {
     font-size: 20px;
@@ -62,31 +66,17 @@ export const BotaoCadastro = styled.button`
 `;
 
 export const CamposCentrais = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+
+  width: 100%; 
+  max-width: 600px; 
+  margin-top: 120px; 
 `;
 
 export const CamposInputs = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-export const CampoEscrita = styled.div`
-  width: 600px;
-  height: 40px;
-  font-size: 16px;
-  border: solid;
-  border-radius: 32px;
-  padding: 0 10px;
-  margin: 13px 0;
-
-  @media (max-width: 280px) {
-    width: 90%;
-    font-size: 14px;
-  }
+  width: 100%;
 `;
 
 export const BotaoCriarConta = styled.button`
@@ -129,9 +119,7 @@ export const LoginDestaque = styled.span`
 
 export const CampoWrapper = styled.div`
   margin: 13px 0;
-  width: 600px;
+  width: 100%; 
 
-  @media (max-width: 280px) {
-    width: 90%;
-  }
+
 `;

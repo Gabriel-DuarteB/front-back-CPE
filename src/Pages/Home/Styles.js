@@ -1,3 +1,4 @@
+// src/Pages/Home/Styles.js
 import styled from "styled-components";
 
 
@@ -8,6 +9,7 @@ export const BarraNavegacaoAmarela = styled.div`
   background-color: yellow;
   display: flex;
   align-items: center;
+  justify-content: space-between; 
   
   padding: 0 35px; 
   box-sizing: border-box;
@@ -18,20 +20,20 @@ export const BarraNavegacaoAmarela = styled.div`
     padding: 20px;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    gap: 0px;
   }
 `;
 
 export const Logo = styled.img`
   height: 50px;
-
+  cursor: pointer; 
 `;
 
 // (HOME, PERFIL, USUÁRIOS)
 export const TextNavLinks = styled.div`
   display: flex;
   align-items: center;
-  gap: 260px; // Espaçamento entre HOME, PERFIL, USUÁRIOS
+  gap: 260px; 
 
   position: absolute; 
   left: 50%; 
@@ -43,7 +45,7 @@ export const TextNavLinks = styled.div`
     transform: none; 
     flex-direction: column; 
     gap: 15px; 
-    
+    order: 2; 
   }
 `;
 
@@ -60,7 +62,21 @@ export const NavLinkStyled = styled.span`
   }
 `;
 
-// Tela preta
+
+export const BotaoSair = styled(NavLinkStyled)`
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @media (max-width: 768px) {
+    position: static;
+    transform: none;
+    order: 3; 
+  }
+`;
+
+
 export const ConteudoPreto = styled.div`
   position: relative;
   min-height: calc(100vh - 90px);
@@ -68,12 +84,12 @@ export const ConteudoPreto = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; 
   padding: 30px 20px; 
   box-sizing: border-box;
 `;
 
-// Carrossel
+
 export const CarouselWrapper = styled.div`
   position: relative;
   width: 400px;
@@ -138,16 +154,17 @@ export const Arrow = styled.button`
 // Barra amarela (MEMBRO, CHEGADA, TEMPO)
 export const InfoBarraAmarela = styled.div`
   background-color: yellow;
+  width: 100%;
   padding: 12px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
   border-radius: 8px;
-  width: 480px;
+  
   max-width: 95%;
   box-sizing: border-box;
-  margin-bottom: 5px; // Espaço para a barra cinza abaixo
+  
 
   @media (max-width: 480px) {
     width: 340px;
@@ -161,19 +178,19 @@ export const TextoInfoBarra = styled.span`
   color: black;
   font-weight: bold;
   text-align: center;
-  flex: 1; // Para que cada item o mesmo espaço e o gap funcione bem
+  flex: 1; 
 `;
 
-// Barra cinza
+
 export const InfoBarraCinza = styled.div`
-  background-color: #e0e0e0; 
+  background-color:rgb(80, 76, 76); 
   padding: 15px 20px; 
   display: flex;
-  justify-content: center; // Alinha as colunas com a barra amarela
-  align-items: flex-start; // Alinha o topo das colunas
+  justify-content: center; 
+  align-items: flex-start; 
   gap: 30px; 
   border-radius: 8px;
-  width: 480px; 
+  width: 100%; 
   max-width: 95%;
   box-sizing: border-box;
 
@@ -181,7 +198,6 @@ export const InfoBarraCinza = styled.div`
     width: 340px;
     gap: 20px;
     padding: 12px 15px;
-    
   }
 `;
 
@@ -196,7 +212,7 @@ export const ColunaInfoCinza = styled.div`
 
 export const NomePessoaText = styled.p`
   font-size: 1.1em;
-  color: #2c3e50; 
+  color: white; 
   font-weight: bold;
   margin: 0 0 3px 0; 
   line-height: 1.3;
@@ -204,15 +220,15 @@ export const NomePessoaText = styled.p`
 
 export const CargoPessoaText = styled.p`
   font-size: 0.95em;
-  color: #34495e; 
+  color: white; 
   margin: 0;
   line-height: 1.3;
 `;
 
 export const StatusText = styled.p`
   font-size: 1.1em;
-  color: #2c3e50;
+  color: white;
   font-weight: bold;
   margin: 0;
   line-height: 1.3; 
-`; 
+`;

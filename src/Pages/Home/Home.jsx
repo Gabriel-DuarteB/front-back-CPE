@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react"; 
-import { useNavigate } from "react-router-dom";
-import {
-  BarraNavegacaoAmarela,
+import { useNavigate } from "react-router-dom"; // Hook (pra navegar entre as páginas )
+
+import { logout } from '../../utils/auth'; 
+import {  // Importação dos componentes estilizados no Styles.js - Faço isso pelo Styles Components 
+  BarraNavegacaoAmarela, // header 
   Logo,
-  TextNavLinks,
-  NavLinkStyled,
+  TextNavLinks, // Link pras páginas (HOME, PÉRFIL, USUÁRIOS)
+  NavLinkStyled, // Pra poder estilizar cada página
+  BotaoSair, 
   ConteudoPreto,
   CarouselWrapper,
   CarouselSlider,
@@ -13,11 +16,11 @@ import {
   Arrow,
   InfoBarraAmarela,
   TextoInfoBarra,
-  InfoBarraCinza,      // Item da lista de sessão
-  ColunaInfoCinza,    // InfoBarraCinza
-  NomePessoaText,     // Para o nome do membro
-  CargoPessoaText,    // Para o cargo do membro
-  StatusText,         // Exibir a chegada e o tempo ativo
+  InfoBarraCinza,     
+  ColunaInfoCinza,   
+  NomePessoaText,    
+  CargoPessoaText,   
+  StatusText,       
 } from "./Styles";
 
 import cpeLogo from "../../assets/cpe_logo.svg";
@@ -31,15 +34,14 @@ const carouselImages = [
   { src: valorResponsabilidadeSocial, alt: "Valor Responsabilidade Social" },
 ];
 
-// Dados para as três sessões ativas 
-const sessoesAtivasExemploInicial = [
+const sessoesAtivasExemploInicial = [ // Sessões, mostrar pro Bernardo pra ver se pode 
   {
     _id: "sessao1",
     id_usuario: { 
       nome: "Gabriel Duarte",
       cargo: "Webdev",
     },
-    createdAt: new Date(Date.now() - 1000 * 60 * 15 - 1000 * 30).toISOString(), // 15 min e 30 seg atrás
+    createdAt: new Date(Date.now() - 1000 * 60 * 15 - 1000 * 30).toISOString(),
   },
   {
     _id: "sessao2",
@@ -47,7 +49,7 @@ const sessoesAtivasExemploInicial = [
       nome: "Bernardo",
       cargo: "Desenvolvedor Backend", 
     },
-    createdAt: new Date(Date.now() - 1000 * 60 * 122 - 1000 * 45).toISOString(), // 2h 2min e 45 seg atrás
+    createdAt: new Date(Date.now() - 1000 * 60 * 122 - 1000 * 45).toISOString(),
   },
   {
     _id: "sessao3",
@@ -55,12 +57,11 @@ const sessoesAtivasExemploInicial = [
       nome: "Gustavo",
       cargo: "Desenvolvedor Frontend",
     },
-    createdAt: new Date(Date.now() - 1000 * 60 * 5 - 1000 * 10).toISOString(), // 5 min e 10 seg atrás
+    createdAt: new Date(Date.now() - 1000 * 60 * 5 - 1000 * 10).toISOString(),
   },
 ];
 
-// Função para formatar o tempo em HH:MM:SS 
-const formatarTempoAtivo = (totalSegundos) => {
+const formatarTempoAtivo = (totalSegundos) => { // Calculo do tempo que as sessoas estão ativas 
   const horas = Math.floor(totalSegundos / 3600);
   const minutos = Math.floor((totalSegundos % 3600) / 60);
   const segundos = Math.floor(totalSegundos % 60);
@@ -69,10 +70,9 @@ const formatarTempoAtivo = (totalSegundos) => {
 };
 
 function Home() {
-  const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(0); // Para o carrossel
+  const navigate = useNavigate(); // Hook ( redirecionar as páginas )
+  const [currentIndex, setCurrentIndex] = useState(0); 
 
-  // Estado para as sessões ativas e lógica de atualização 
   const [sessoesAtivas, setSessoesAtivas] = useState(
     sessoesAtivasExemploInicial.map(sessao => {
       const inicio = new Date(sessao.createdAt).getTime();
@@ -81,6 +81,12 @@ function Home() {
       return { ...sessao, tempoAtivoSegundos: diffSegundos };
     })
   );
+
+  
+  const handleLogout = () => { // Função pra quando eu clicar em sair, o usuário ser deslogado 
+    logout(); // limpa o token/sessão do usuário 
+    navigate('/login'); // direcionado pra página de login 
+  };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -96,13 +102,11 @@ function Home() {
     return () => clearInterval(intervalId);
   }, []);
 
-  // Função para formatar a hora de chegada 
   const formatarHoraChegada = (dataString) => {
     const data = new Date(dataString);
     return data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
   };
 
-  // Lógica do carrossel 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? carouselImages.length - 1 : currentIndex - 1;
@@ -117,16 +121,20 @@ function Home() {
 
   return (
     <>
-      <BarraNavegacaoAmarela>
-        <Logo src={cpeLogo} alt="CPE Logo" />
+      <BarraNavegacaoAmarela> {/* Componente estilizado pra parte amarela de cima */}
+        <Logo src={cpeLogo} alt="CPE Logo" onClick={() => navigate('/')} />
         <TextNavLinks>
+          {/* Lik pras páginas que serão direcionadas */}
           <NavLinkStyled onClick={() => navigate("/")}>HOME</NavLinkStyled>
           <NavLinkStyled onClick={() => navigate("/perfil")}>PERFIL</NavLinkStyled>
           <NavLinkStyled onClick={() => navigate("/usuarios")}>USUÁRIOS</NavLinkStyled>
         </TextNavLinks>
+        
+        <BotaoSair onClick={handleLogout}>SAIR</BotaoSair>
+        {/* Chama a função logout que vai deslogar a pessoa */}
       </BarraNavegacaoAmarela>
 
-      <ConteudoPreto>
+      <ConteudoPreto> {/* Componente estilizado pra parte preta */}
         <CarouselWrapper>
           <Arrow direction="left" onClick={goToPrevious}>&#10094;</Arrow>
           <CarouselSlider style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
@@ -139,7 +147,7 @@ function Home() {
           <Arrow direction="right" onClick={goToNext}>&#10095;</Arrow>
         </CarouselWrapper>
 
-        <InfoBarraAmarela>
+        <InfoBarraAmarela> {/* Componente estilizado pra linha amarela */}
           <TextoInfoBarra>MEMBRO</TextoInfoBarra>
           <TextoInfoBarra>CHEGADA</TextoInfoBarra>
           <TextoInfoBarra>TEMPO</TextoInfoBarra> 
